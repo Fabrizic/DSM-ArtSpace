@@ -30,7 +30,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ArtGalleryApp() {
     var currentImageIndex by remember { mutableIntStateOf(0) }
-    val images = listOf(R.drawable.ca004ab1e7fe616c00eb8757b8de15c6, R.drawable.leonardo_da_vinci___mona_lisa__louvre__paris_, R.drawable.pintura_la_joven_de_la_perla)
+    val images = listOf(
+        R.drawable.ca004ab1e7fe616c00eb8757b8de15c6,
+        R.drawable.leonardo_da_vinci___mona_lisa__louvre__paris_,
+        R.drawable.pintura_la_joven_de_la_perla
+    )
     val titles = listOf("La noche estrellada", "La Gioconda", "La joven de la perla")
     val authors = listOf("Vincent van Gogh", "Leonardo Da Vinci", "Johannes Vermeer")
 
@@ -41,18 +45,20 @@ fun ArtGalleryApp() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Box( // Use a Box to layer the image and frame
+        Box(
             modifier = Modifier
-                .size(350.dp) // Slightly larger size to accommodate the frame
-                .shadow(16.dp, shape = RoundedCornerShape(8.dp)) // Add a shadow.clip(RoundedCornerShape(8.dp)) // Clip to the rounded corners
-                .background(Color.White) // Fill with white
+                .size(360.dp)
+                .shadow(24.dp, shape = RoundedCornerShape(16.dp))
+                .border(8.dp, Color.Black, shape = RoundedCornerShape(16.dp)) // Borde negro alrededor del marco blanco
+                .background(Color.White)
         ) {
             Image(
                 painter = painterResource(id = images[currentImageIndex]),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(300.dp)
-                    .border(8.dp, Color.Black)
+                    .fillMaxSize()
+                    .padding(12.dp)
+                    .align(Alignment.Center)
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -81,6 +87,8 @@ fun ArtGalleryApp() {
         }
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
